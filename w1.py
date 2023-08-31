@@ -17,20 +17,22 @@ def get_avg_assignment(sample: pd.DataFrame):
     df['start_time'] = pd.to_timedelta(df['start_time'].apply(convert_time))
     df['end_time'] = pd.to_timedelta(df['end_time'].apply(convert_time))
 
-    df.loc[df['total_time'], 'total_time'] = df['end_time'] - df['start_time']
+    df['total_time'] = df['end_time'] - df['start_time']
 
     # Drop sections where start time is greater than end time
     df = df[df['start_time'] < df['end_time']]
 
     # Drop unused columns
     df = df.drop(columns=['user_id', 'problem_id',
-                 'assistment_id', 'hint_count', 'original', 'correct', 'skill', 'problem_type'])
+                 'assistment_id', 'hint_count', 'original', 'correct', 'skill', 'problem_type', 'start_time', 'end_time'])
 
     # Average
     df = df.groupby('assignment_id').mean(numeric_only=False)
 
     # Turn timedelta back to string
-    df.loc[df['total_time'], 'total_time'] = df['total_time'].apply(
+    df['average_time'] = df['total_time'].apply(
         lambda s: s.seconds)
+
+    df = df.drop(columns=['total_time'])
 
     return df
