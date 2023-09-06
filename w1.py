@@ -33,12 +33,12 @@ def get_avg_assignment(sample: pd.DataFrame):
     df['average_time'] = df['total_time'].apply(
         lambda s: s.seconds)
 
-    return df
+    return df.drop(columns=['total_time'])
 
 
 def get_avg_correct_cnt(sample: pd.DataFrame) -> pd.DataFrame:
     df = sample.drop(columns=['user_id', 'problem_id',
-                              'assistment_id', 'hint_count', 'original', 'skill', 'start_time', 'end_time'])
+                              'assistment_id', 'hint_count', 'original', 'skill', 'start_time', 'end_time', 'assignment_id'])
 
     df = df.groupby('problem_type').mean()
 
