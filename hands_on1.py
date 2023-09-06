@@ -24,3 +24,27 @@ def get_avg_time_per_action(data: pd.DataFrame) -> pd.DataFrame:
 
 def get_gaming_clip(data: pd.DataFrame) -> pd.DataFrame:
     return data[data['Gaming clip'].notna()]
+
+
+def context_changes(data: pd.DataFrame) -> pd.DataFrame:
+    shifted = data.shift(1)
+    copied = data.copy()
+
+    copied['#ContextChanges'] = (shifted['context'] == copied['context'])*1
+
+    return get_gaming_clip(copied)\
+        .groupby('Gaming clip')\
+        .sum(numeric_only=True)\
+        .drop(columns=['Row ID', 'time'])
+
+
+def correct_actions(data: pd.DataFrame) -> pd.DataFrame:
+    gaming_data = get_gaming_clip(data)
+
+    gaming_data['#CorrectActions'] = (
+        gaming_data['assessment'] == 'RIGHT') * 1
+
+    return gaming_data\
+        .groupby('Gaming clip')\
+        .sum(numeric_only=True)\
+        .drop(columns=['Row ID', 'time'])
