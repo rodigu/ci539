@@ -48,3 +48,32 @@ def correct_actions(data: pd.DataFrame) -> pd.DataFrame:
         .groupby('Gaming clip')\
         .sum(numeric_only=True)\
         .drop(columns=['Row ID', 'time'])
+
+
+def total_time_to_solve(data: pd.DataFrame):
+    return data.groupby(['student', 'lesson']).sum(numeric_only=True).drop(columns=['Gaming clip', 'Row ID'])
+
+
+def average_solve_time(data: pd.DataFrame):
+    return data.groupby(['student', 'lesson']).sum(numeric_only=True).reset_index().groupby(['lesson']).mean(numeric_only=True).drop(columns=['Gaming clip', 'Row ID'])
+
+
+def deviation_mean_solve_time(data: pd.DataFrame):
+    tts = data.groupby(['student', 'lesson']).sum(numeric_only=True).drop(
+        columns=['Gaming clip', 'Row ID']).reset_index()
+    at = data.groupby(['student', 'lesson']).sum(
+        numeric_only=True).reset_index().groupby(['lesson']).mean(numeric_only=True)
+    avg_solve_time = average_solve_time(data)
+    tts['DeviationFromMean'] = 0
+    tts['TotalTimeToSolve'] = total_time_to_solve(data).reset_index()[
+        'time']
+    tts['AverageSolveTime'] = 0
+    for lesson, content in at.iterrows():
+        avg_time = content['time']
+        tts.loc[tts['lesson'] == lesson, 'DeviationFromMean'] =\
+            tts.loc[tts['lesson'] == lesson, 'time']\
+            .apply(lambda x: avg_time-x)
+        tts.loc[tts['lesson'] == lesson, 'AverageSolveTime'] =\
+            avg_solve_time.loc[lesson]['time']
+
+    return tts.drop(columns=['time'])
