@@ -77,3 +77,17 @@ def deviation_mean_solve_time(data: pd.DataFrame):
             avg_solve_time.loc[lesson]['time']
 
     return tts.drop(columns=['time'])
+
+
+def wrong_right_ratio(data: pd.DataFrame):
+    c = data.copy()
+    c['Wrong Count'] = 0
+    c['Correct Count'] = 0
+    c['Help Count'] = 0
+    c.loc[c['assessment'] == 'WRONG', 'Wrong Count'] = 1
+    c.loc[c['assessment'] == 'BUG', 'Wrong Count'] = 1
+    c.loc[c['assessment'] == 'HELP', 'Help Count'] = 1
+    c.loc[c['assessment'] == 'RIGHT', 'Correct Count'] = 1
+    c = c.groupby('action').sum(numeric_only=True)
+    c['Wrong to Right Ratio'] = c['Wrong Count'] / c['Correct Count']
+    return c.drop(columns=['Row ID', 'time', 'Gaming clip'])
