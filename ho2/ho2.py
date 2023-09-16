@@ -64,18 +64,29 @@ def plot_percent_incorrect(df: pd.DataFrame, student: str):
 
 def learning_curve_for(original_df: pd.DataFrame, skill: str):
     """Learning curves for the skills named “Box and Whisker” and “Inverse Relation”
+    The plot has `ylim=(0,1)`
+
+    Any entry where `end_time` > `start_time` is dropped.
 
     :param original_df: DataFrame from `ASSISTments-sample.csv`
     :param skill: skill string
     """
+    df = original_df[original_df['start_time'] < original_df['end_time']]
     df = original_df[original_df['skill'] == skill]\
         .sort_values(['user_id', 'start_time'])\
         .reset_index()
+
     df['skill_encounter_number'] = df.groupby('user_id').cumcount() + 1
     df['correct'] = df.groupby(
         'user_id')['correct'].cumsum() / df['skill_encounter_number']
     df['error'] = 1 - df['correct']
 
-    ax = df.groupby('skill_encounter_number')['error'].mean().plot(
-        label=skill, ylabel='% of mistakes')
+    mean_skill = df.groupby('skill_encounter_number')['error'].mean()
+
+    ax = mean_skill.plot(
+        label=skill, ylabel='% of mistakes', xlabel='skill encounter number', ylim=(0, 1), )
+
     ax.legend()
+
+    print(
+        f'Skill: {skill}\nBeginning %: {mean_skill.iloc[0]}\nEnd %: {mean_skill.iloc[-1]}\n   Change in %:{mean_skill.iloc[0] - mean_skill.iloc[-1]}\n')
