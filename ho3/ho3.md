@@ -43,7 +43,9 @@ Which algorithm achieved the highest performance on question 1? Why was that alg
 > The M5 algorithm reached the highest performance.
 > As we can observe in the following graphs, the actual label doesn't follow a single line. It increases, reaches a plateau, and then it decreases.
 > The Linear Regression model was unable to capture such nuances, and only predicted the labels along a strictly increasing straight line.
-> ![Q1 Linear Regression Plot](data/Q1_LinearRegression_performance.png) ![Q1 M5 Plot](data/Q1_M5_performance.png)
+> ![Q1 Linear Regression Plot](data/Q1_LinearRegression_performance.png)
+>
+> ![Q1 M5 Plot](data/Q1_M5_performance.png)
 
 ### Question 1.3 (0.5 point)
 
@@ -91,7 +93,9 @@ Compare the Linear Regression model and the REPTree model. Which one as the high
 >
 > We can easily observe this in the graphs for these algorithms.
 >
-> ![Linear Regression](data/Q3_LinearRegression.png) ![REPTree](data/Q3_REPTree.png)
+> ![Linear Regression](data/Q3_LinearRegression.png)
+>
+> ![REPTree](data/Q3_REPTree.png)
 
 ## Classifications
 
@@ -135,12 +139,20 @@ Using the dataset named [Assignment3-Q7.csv](./data/Assignment3-Q7.csv), create 
 
 - Step Regression (“Linear Regression” operator in RapidMiner)
 
->
+> 53.85%
 
 - K\* (“W-KStar” operator in RapidMiner)
 
->
+> 97.28%
 
 ### Question 2.4 (0.5 point)
 
 Which algorithm achieved the highest performance on Question 3? Why was that algorithm more successful? Use a visual representation of the data to support your statement. (Hint: try coloring each data point using a unique color for each label)
+
+> _KStar_ performs better. _Linear Regression_ exclusively predicted label A.
+>
+> In the following plots, we separate data points using their predicted label, and color them using their actual label. We can observe how _KStar_ predicted a false B label a few times, but managed to perform extremely well when compared to the _Linear Regression_ model.
+>
+> ![KStar performance plot](data/Q8_KStar_plot.png)
+>
+> ![Linear Regression plot](./data/Q8_LR_plot.png)

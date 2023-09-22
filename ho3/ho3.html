@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ho3.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="hands-on-data-3">Hands-on-data #3</h1>
+<p>The goal of this assignment is for you to familiarize yourself with different predictive modeling algorithms and with tools that allows you to build predictive models. You will be asked to build regression and classification models using specific algorithms on predefined datasets. You will be asked to reflect on why specific algorithms worked better on specific datasets.</p>
+<p>When submitting the assignment, include a text document answering the questions as well as RapidMiner process files (save your process as .rmp).</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#hands-on-data-3">Hands-on-data #3</a>
+<ul>
+<li><a href="#contents">Contents</a></li>
+<li><a href="#regressions">Regressions</a>
+<ul>
+<li><a href="#question-11-05-point">Question 1.1 (0.5 point)</a></li>
+<li><a href="#question-12-05-point">Question 1.2 (0.5 point)</a></li>
+<li><a href="#question-13-05-point">Question 1.3 (0.5 point)</a></li>
+<li><a href="#question-14-05-point">Question 1.4 (0.5 point)</a></li>
+</ul>
+</li>
+<li><a href="#classifications">Classifications</a>
+<ul>
+<li><a href="#question-21-05-point">Question 2.1 (0.5 point)</a></li>
+<li><a href="#question-22-1-point">Question 2.2 (1 point)</a></li>
+<li><a href="#question-23-05-point">Question 2.3 (0.5 point)</a></li>
+<li><a href="#question-24-05-point">Question 2.4 (0.5 point)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="regressions">Regressions</h2>
+<h3 id="question-11-05-point">Question 1.1 (0.5 point)</h3>
+<p>Using the dataset named <a href="./data/Assignment3-Q1.csv">Assignment3-Q1.csv</a>, create regression models predicting the value of “label” using the following algorithms and report correlations for each of the models:</p>
+<ul>
+<li>Linear Regression (“Linear Regression” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p><code>0.608</code></p>
+</blockquote>
+<ul>
+<li>M5’ (“W-M5P” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p><code>0.992</code></p>
+</blockquote>
+<blockquote>
+<p>Models:
+<img src="./data/Q1_Models.png" alt="Q1 Models Image"></p>
+</blockquote>
+<h3 id="question-12-05-point">Question 1.2 (0.5 point)</h3>
+<p>Which algorithm achieved the highest performance on question 1? Why was that algorithm more successful? Use a visual representation of the data to support your statement.</p>
+<blockquote>
+<p>The M5 algorithm reached the highest performance.
+As we can observe in the following graphs, the actual label doesn't follow a single line. It increases, reaches a plateau, and then it decreases.
+The Linear Regression model was unable to capture such nuances, and only predicted the labels along a strictly increasing straight line.
+<img src="data/Q1_LinearRegression_performance.png" alt="Q1 Linear Regression Plot"> <img src="data/Q1_M5_performance.png" alt="Q1 M5 Plot"></p>
+</blockquote>
+<h3 id="question-13-05-point">Question 1.3 (0.5 point)</h3>
+<p>Using the dataset named <a href="./data/Assignment3-Q3.csv">Assignment3-Q3.csv</a>, create regression models predicting the value of “label” using the following algorithms and report correlations for each of the models:</p>
+<ul>
+<li>Linear Regression (“Linear Regression” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p>0.865</p>
+</blockquote>
+<ul>
+<li>REPTree (“W-REPTree” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p>0.867</p>
+</blockquote>
+<ul>
+<li>M5’ (“W-M5P” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p>0.865</p>
+</blockquote>
+<blockquote>
+<p>Models:
+<img src="./data/Q3_Models.png" alt="Q3 Models Image"></p>
+</blockquote>
+<h3 id="question-14-05-point">Question 1.4 (0.5 point)</h3>
+<p>Using the models created in Question 3, compare the effectiveness and the content of each model.</p>
+<p>Which model has the highest performance?</p>
+<blockquote>
+<p>REPTree</p>
+</blockquote>
+<p>Compare the Linear Regression and the M5’ models. What are the differences and/or similarities between those two models?</p>
+<blockquote>
+<p><em>M5</em> only found one branch for the tree. Its label classification is:
+$$LM_1=1.5045f_1 + 0.001f_2 - 0.0497f_3 + 0.095$$
+The <em>Linear Regression</em> formula is:
+$$LR=1.505f_1 + 0.001f_2 - 0.050f_3 + 0.095$$
+They arrived at very similar results.
+They seem to disagree slightly on $f_1$ and $f_3$</p>
+</blockquote>
+<p>What can you conclude about the usefulness of the M5’ algorithm for this dataset? What information does that provide us about the nature of the relationship between the features and the label?</p>
+<blockquote>
+<p>Because <em>M5</em> was able to score a fairly decent correlation with a single branch and that the equation it found is very similar to the one discovered by the <em>Linear Regression</em> algorithm, we can deduce that the relationship between the features and the label is linear.</p>
+</blockquote>
+<p>Compare the Linear Regression model and the REPTree model. Which one as the highest performance? Which one seems like a more accurate representation of the relationship between the features and the label? Why?</p>
+<blockquote>
+<p>Although <em>REPTree</em> manage to score a marginally higher correlation ($0.002$ higher), <em>Linear Regression</em> seems to more cosely describe the relationship between the features and the label.</p>
+<p>We can easily observe this in the graphs for these algorithms.</p>
+<p><img src="data/Q3_LinearRegression.png" alt="Linear Regression"> <img src="data/Q3_REPTree.png" alt="REPTree"></p>
+</blockquote>
+<h2 id="classifications">Classifications</h2>
+<h3 id="question-21-05-point">Question 2.1 (0.5 point)</h3>
+<p>Using the dataset named <a href="./data/Assignment3-Q5.csv">Assignment3-Q5.csv</a>, create classification models predicting the value of “is gaming?” using the following algorithms and report accuracies for each of the models:</p>
+<ul>
+<li>Step Regression (“Linear Regression” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p>89.20%</p>
+</blockquote>
+<ul>
+<li>J48 decision tree (“W-J48” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p>100.00%</p>
+</blockquote>
+<h3 id="question-22-1-point">Question 2.2 (1 point)</h3>
+<p>Using the results from Q1, answer the following questions:</p>
+<p>Which of the two algorithms achieved the highest accuracy? Explain why you think this model was more effective. Discuss how different features (or combination of features) are related to the label and how those relationship can or cannot be captured by the algorithms</p>
+<blockquote>
+<p><em>J48</em> has a higher accuracy. That is because it can better capture the influence of each feature on the label.</p>
+<p><em>J48</em> also produces some intuitive branches in its model. For instance, students that take longer to answer a question are less likely to be gaming. Number of hints taken also has an influence: students who take a short time and ask for many hints (over 4 hints) are labeled as having gaming behavior.</p>
+<p>However, as we look deeper into the structure of the tree, we see what I would indicate as a sign of the model being overfitted into the data. A student who performs an average of actions per second between 2.3 and 2.9, asks for less than 4 hints and has over 3 incorrect solutions is labeled as not gaming. Forthermore, note that the model found only 7 students who fit into that path of the tree.</p>
+<p><img src="data/Q7_J48_model.png" alt="J48 Tree Model"></p>
+</blockquote>
+<p>Even though the accuracy of both model is fairly high, the two models have very different actual performance. Look at the confusion matrix: the table indicating the number of correct and incorrect predictions produced by RapidMiner’s performance operator. Accuracy is computed by looking at the number of true positives (instances of gaming detected as gaming) and true negatives (instances of not-gaming detected as not-gaming) and dividing by the total number of instances; (TP + TN) / total. Try to explain why accuracy might not be the best measure of performance in this dataset.</p>
+<blockquote>
+<p>Accuracy is not a good measurement of performance in this case because there are relatively few <em>True Positives</em> (<code>true 1</code> on the table), meaning we have very few datapoints where students actually exhibited gaming behavior. Therefore, an algorithm that always (or almost always) predicts a negative (<code>0</code>, i.e. student <em>isn't</em> gaming).</p>
+<p>Such is the case with the <em>Linear Regression</em> algorithm: it only predicted 2 positives, and had 108 false negative predictions. We can observe that, using a strategy of almost always predicting 0, it managed to have a high accuracy, even though it only correctly predicted 1.82% of gaming behavior correctly (true positives).</p>
+<p>In the context where detecting positives (gaming behavior) is the goal, accuracy is not a good measure of performance as it fails to capture the model's failure in actually labeling gaming behavior correctly.</p>
+</blockquote>
+<h3 id="question-23-05-point">Question 2.3 (0.5 point)</h3>
+<p>Using the dataset named <a href="./data/Assignment3-Q7.csv">Assignment3-Q7.csv</a>, create classification models predicting the value of “label” using the following algorithms and report accuracies for each of the models:</p>
+<ul>
+<li>Step Regression (“Linear Regression” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p>53.85%</p>
+</blockquote>
+<ul>
+<li>K* (“W-KStar” operator in RapidMiner)</li>
+</ul>
+<blockquote>
+<p>97.28%</p>
+</blockquote>
+<h3 id="question-24-05-point">Question 2.4 (0.5 point)</h3>
+<p>Which algorithm achieved the highest performance on Question 3? Why was that algorithm more successful? Use a visual representation of the data to support your statement. (Hint: try coloring each data point using a unique color for each label)</p>
+<blockquote>
+<p><em>KStar</em> performs better. <em>Linear Regression</em> exclusively predicted label A.</p>
+<p>In the following plots, we separate data points using their predicted label, and color them using their actual label. We can observe how <em>KStar</em> predicted a false B label a few times, but managed to perform extremely well when compared to the <em>Linear Regression</em> model.</p>
+<p><img src="data/Q8_KStar_plot.png" alt="KStar performance plot"><img src="./data/Q8_LR_plot.png" alt="Linear Regression plot"></p>
+</blockquote>
+
+</body>
+</html>
