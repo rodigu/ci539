@@ -18,6 +18,16 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "8300870e8dd929f2",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "q4_kappa.png"
+              }
+            }
           }
         ]
       }
@@ -148,10 +158,21 @@
   },
   "active": "3d5cc8167b79268c",
   "lastOpenFiles": [
-    "q3_kappa.png",
-    "image.png",
-    "q2_kappa.png",
-    "q1_process.png",
-    "q1_kappa.png"
+    "q5.rmp",
+    "q4.rmp",
+    "q123.rmp",
+    "q7.rmp",
+    "Pasted image 20231008170004.png",
+    "Pasted image 20231008164311.png",
+    "Pasted image 20231008145015.png",
+    "Pasted image 20231008143803.png",
+    "Pasted image 20231008143335.png",
+    "Pasted image 20231008143305.png",
+    "Pasted image 20231008142622.png",
+    "Pasted image 20231008134328.png",
+    "Pasted image 20231008134307.png",
+    "Pasted image 20231008133902.png",
+    "data/~$CognitiveTutorAlgebra-action-logs-with-gaming-clips.xlsx",
+    "ho4.md"
   ]
 }
