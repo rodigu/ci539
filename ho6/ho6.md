@@ -23,18 +23,18 @@ ID Transaction
 
 Create a table representing the list of all transactions in which each possible elements of the transactions (a, b, c, d, e, f) are in their own column. The value of the cells for each of those columns should be 0 if the transaction doesn’t contain this element and 1 if the transaction contains this element. (see example from Week 9 association rule mining PowerPoint slides)
 
-> | ID  | a   | b   | c   | d   | e   | f   |
-> | --- | --- | --- | --- | --- | --- | --- |
-> | 1   | 0   | 1   | 1   | 1   | 0   | 1   |
-> | 2   | 0   | 0   | 0   | 1   | 1   | 0   |
-> | 3   | 1   | 1   | 1   | 1   | 1   | 0   |
-> | 4   | 0   | 0   | 1   | 0   | 1   | 0   |
-> | 5   | 0   | 1   | 0   | 1   | 1   | 0   |
-> | 6   | 0   | 1   | 1   | 1   | 0   | 1   |
-> | 7   | 0   | 1   | 0   | 1   | 1   | 1   |
-> | 8   | 0   | 1   | 1   | 1   | 1   | 1   |
-> | 9   | 1   | 1   | 1   | 1   | 0   | 0   |
-> | 10  | 0   | 1   | 1   | 1   | 1   | 0   |
+| ID  | a   | b   | c   | d   | e   | f   |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1   | 0   | 1   | 1   | 1   | 0   | 1   |
+| 2   | 0   | 0   | 0   | 1   | 1   | 0   |
+| 3   | 1   | 1   | 1   | 1   | 1   | 0   |
+| 4   | 0   | 0   | 1   | 0   | 1   | 0   |
+| 5   | 0   | 1   | 0   | 1   | 1   | 0   |
+| 6   | 0   | 1   | 1   | 1   | 0   | 1   |
+| 7   | 0   | 1   | 0   | 1   | 1   | 1   |
+| 8   | 0   | 1   | 1   | 1   | 1   | 1   |
+| 9   | 1   | 1   | 1   | 1   | 0   | 0   |
+| 10  | 0   | 1   | 1   | 1   | 1   | 0   |
 
 ### Q2 – (1 point)
 
